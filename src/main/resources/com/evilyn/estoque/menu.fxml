@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane prefHeight="450.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.evilyn.estoque.controller.MenuController">
+   <left>
+      <VBox prefHeight="450.0" prefWidth="189.0" style="-fx-background-color: #8451a6;" styleClass="menu" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="titulo" text="Estoque 📦" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville Old Face" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnVisualizarEstoque" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#aoVisualizarEstoque" prefHeight="42.0" prefWidth="187.0" style="-fx-background-color: #8451a6;" text=" Visualizar estoque" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="botao-menu" />
+                  <String fx:value="titulo" />
+               </styleClass>
+               <graphic>
+                  <FontIcon iconColor="#d8c3e0" iconLiteral="mdi2a-archive-eye-outline" iconSize="20" text="󱝖" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnaoCadastrarProduto" alignment="BASELINE_LEFT" layoutX="18.0" layoutY="58.0" mnemonicParsing="false" onAction="#aoCadastrarProduto" prefHeight="38.0" prefWidth="175.0" style="-fx-background-color: #8451a6;" text="Entrada de Produtos" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="botao-menu" />
+                  <String fx:value="titulo" />
+               </styleClass>
+               <graphic>
+                  <FontIcon iconColor="#d8c3e0" iconLiteral="mdi2p-package-variant-plus" iconSize="20" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnaoGerarRelatorio" alignment="BASELINE_LEFT" layoutX="18.0" layoutY="96.0" mnemonicParsing="false" onAction="#aoGerarRelatorio" prefHeight="38.0" prefWidth="175.0" style="-fx-background-color: #8451a6;" text="Relatório" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="botao-menu" />
+                  <String fx:value="titulo" />
+               </styleClass>
+               <graphic>
+                  <FontIcon iconColor="#d8c3e0" iconLiteral="mdi2b-beaker-check-outline" iconSize="20" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnSair1111" alignment="BASELINE_LEFT" layoutX="18.0" layoutY="172.0" mnemonicParsing="false" onAction="#aoSair" prefHeight="38.0" prefWidth="175.0" style="-fx-background-color: #8451a6;" text="Sair" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="botao-menu" />
+                  <String fx:value="titulo" />
+               </styleClass>
+               <graphic>
+                  <FontIcon iconColor="#d8c3e0" iconLiteral="mdi2l-logout" iconSize="20" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #F4EDE7;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" styleClass="texto-principal" text="Bem-Vindo(a)!" textFill="#8451a6">
+               <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="207.0" layoutY="223.0" text="Selecione uma opção no menu ao lado." textFill="#8451a6ab">
+               <font>
+                  <Font name="Baskerville Old Face" size="13.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </center>
+</BorderPane>
