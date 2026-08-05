@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+
+<VBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.evilyn.estoque.controller.LoginController">
+   <children>
+      <HBox>
+         <children>
+            <VBox alignment="CENTER" prefHeight="450.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #F4EDE7;">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+               <FontIcon iconColor="#8451a6" iconLiteral="mdi2a-account-multiple-plus-outline" iconSize="50" wrappingWidth="53.0" />
+            
+                <Label fx:id="textoNaTela" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="0.0" prefWidth="369.0" text="Sistema de Estoque - Cadastro de Usuário " textAlignment="CENTER" textFill="#8451a6">
+                  <font>
+                     <Font name="Arial Bold Italic" size="18.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="40.0" left="50.0" right="50.0" />
+                  </VBox.margin>
+               </Label>
+               <TextField fx:id="usuario" prefHeight="35.0" prefWidth="660.0" promptText="Informe seu usuário " />
+               <Label prefHeight="0.0" prefWidth="652.0" text="Label" />
+               <PasswordField fx:id="senha" prefHeight="35.0" prefWidth="660.0" promptText="Informe sua senha" />
+               <PasswordField layoutX="30.0" layoutY="256.0" prefHeight="35.0" prefWidth="660.0" promptText="Confirme sua senha" />
+               <TextFlow fx:id="errosSenha" prefHeight="22.0" prefWidth="300.0" visible="false">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário ou senha incorretos, tente novamente" />
+                  </children>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </TextFlow>
+                <Button onAction="#aoApertarBotao" onMouseClicked="#aoApertarBotao" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #8451A6; -fx-border-radius: 15; -fx-background-radius: 15;" text="Confirmar Cadastro " textFill="WHITE" />
+               <Label fx:id="aoEsquecerSenha" onMouseClicked="#aoApertarBotao" text="Já possui uma conta? Acesse aqui!" underline="true" />
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

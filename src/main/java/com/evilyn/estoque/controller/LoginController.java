@@ -1,5 +1,7 @@
 package com.evilyn.estoque.controller;
 
+import com.evilyn.estoque.model.Usuario;
+import com.evilyn.estoque.model.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import com.evilyn.estoque.util.GerenciadorTela;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 
 public class LoginController {
     @FXML
@@ -24,11 +27,7 @@ public class LoginController {
     @FXML
     private TextFlow errosDados;
 
-    private Map<String, String> usuariosCadastrados = Map.of(
-            "admin@gmail.com", "1234",
-            "evilyn@gmail.com" , "1234",
-            "funci@gmail.com" , "1234"
-    );
+    private final UsuarioDAO bdUsuario = UsuarioDAO.getInstancia();
 
     @FXML
     protected void aoApertarBotao(ActionEvent event) throws IOException {
@@ -36,7 +35,9 @@ public class LoginController {
         String usuarioDigitado = usuario.getText().toLowerCase();
         String senhaDigitada = senha.getText();
 
-        if (usuariosCadastrados.containsKey(usuarioDigitado) && usuariosCadastrados.get(usuarioDigitado).equals(senhaDigitada)){
+        Optional<Usuario> usuarioEncontrado = bdUsuario.buscarPorEmail(usuarioDigitado);
+
+        if (usuarioEncontrado.isPresent() && usuarioEncontrado.get().getSenha().equals(senhaDigitada)){
 
             GerenciadorTela.getInstancia().trocarTela(event, "menu.fxml", "Sistema Estoque - Menu");
 
