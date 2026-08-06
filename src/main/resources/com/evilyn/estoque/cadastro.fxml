@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -12,44 +13,97 @@
 <?import javafx.scene.text.TextFlow?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
+<VBox alignment="CENTER" prefHeight="450.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #F4EDE7; -fx-border-color: #F4EDE7; -fx-border-width: 2;" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.evilyn.estoque.controller.CadastroController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <HBox alignment="CENTER" prefHeight="30.0" prefWidth="676.0" spacing="50.0" translateY="-15.0" VBox.vgrow="NEVER">
+        <children>
+            <FontIcon iconColor="#8451a6" iconLiteral="mdi2a-account-multiple-plus" iconSize="50" text="󰀐" />
 
-<VBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.evilyn.estoque.controller.LoginController">
-   <children>
-      <HBox>
-         <children>
-            <VBox alignment="CENTER" prefHeight="450.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #F4EDE7;">
-                <padding>
-                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                </padding>
-               <FontIcon iconColor="#8451a6" iconLiteral="mdi2a-account-multiple-plus-outline" iconSize="50" wrappingWidth="53.0" />
-            
-                <Label fx:id="textoNaTela" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="0.0" prefWidth="369.0" text="Sistema de Estoque - Cadastro de Usuário " textAlignment="CENTER" textFill="#8451a6">
-                  <font>
-                     <Font name="Arial Bold Italic" size="18.0" />
-                  </font>
-                  <VBox.margin>
-                     <Insets bottom="40.0" left="50.0" right="50.0" />
-                  </VBox.margin>
-               </Label>
-               <TextField fx:id="usuario" prefHeight="35.0" prefWidth="660.0" promptText="Informe seu usuário " />
-               <Label prefHeight="0.0" prefWidth="652.0" text="Label" />
-               <PasswordField fx:id="senha" prefHeight="35.0" prefWidth="660.0" promptText="Informe sua senha" />
-               <PasswordField layoutX="30.0" layoutY="256.0" prefHeight="35.0" prefWidth="660.0" promptText="Confirme sua senha" />
-               <TextFlow fx:id="errosSenha" prefHeight="22.0" prefWidth="300.0" visible="false">
-                  <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário ou senha incorretos, tente novamente" />
-                  </children>
-                  <opaqueInsets>
-                     <Insets />
-                  </opaqueInsets>
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-               </TextFlow>
-                <Button onAction="#aoApertarBotao" onMouseClicked="#aoApertarBotao" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #8451A6; -fx-border-radius: 15; -fx-background-radius: 15;" text="Confirmar Cadastro " textFill="WHITE" />
-               <Label fx:id="aoEsquecerSenha" onMouseClicked="#aoApertarBotao" text="Já possui uma conta? Acesse aqui!" underline="true" />
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+            <Label fx:id="textoNaTela" text="Sistema de Estoque - Cadastro de Usuário" textFill="#8451a6">
+                <font>
+                    <Font name="Arial Bold Italic" size="24.0" />
+                </font>
+            </Label>
+        </children>
+    </HBox>
+    <VBox alignment="BOTTOM_LEFT" prefHeight="70.0" prefWidth="676.0" translateY="10.0">
+        <children>
+            <TextField fx:id="usuarioCadastrar" prefHeight="44.0" prefWidth="516.0" promptText="Informe seu usuário" styleClass="campos-login">
+                <VBox.margin>
+                    <Insets bottom="10.0" left="80.0" right="80.0" />
+                </VBox.margin>
+                <font>
+                    <Font name="Gill Sans MT" size="16.0" />
+                </font>
+            </TextField>
+            <Label fx:id="usuarioInvalido" text="É necessário informar um email válido." textFill="#4b793f" translateY="-5.0" visible="false">
+                <font>
+                    <Font name="Gill Sans MT Italic" size="16.0" />
+                </font>
+                <VBox.margin>
+                    <Insets left="100.0" />
+                </VBox.margin>
+            </Label>
+        </children>
+    </VBox>
+    <VBox alignment="BOTTOM_LEFT" prefHeight="74.0" prefWidth="676.0" translateY="10.0">
+        <children>
+            <PasswordField fx:id="senhaCadastrar" prefHeight="44.0" prefWidth="460.0" promptText="Informe sua senha" styleClass="campos-login">
+                <font>
+                    <Font name="Gill Sans MT" size="16.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="10.0" left="80.0" right="80.0" />
+                </VBox.margin>
+            </PasswordField>
+            <Label fx:id="senhaInvalida" text="É necessário informar uma senha válida." textFill="#4b793f" translateY="-5.0" visible="false">
+                <font>
+                    <Font name="Gill Sans MT Italic" size="16.0" />
+                </font>
+                <VBox.margin>
+                    <Insets left="100.0" />
+                </VBox.margin>
+            </Label>
+        </children>
+    </VBox>
+    <PasswordField fx:id="confirmaSenha" onAction="#aoConfirmarCadastro" prefHeight="42.0" prefWidth="516.0" promptText="Confirme sua senha" styleClass="campos-login">
+        <VBox.margin>
+            <Insets bottom="-10.0" left="80.0" right="80.0" />
+        </VBox.margin>
+        <font>
+            <Font name="Gill Sans MT" size="16.0" />
+        </font>
+    </PasswordField>
+    <TextFlow fx:id="erroSenha" prefHeight="43.0" prefWidth="360.0" textAlignment="CENTER" translateY="-8.0" visible="false">
+        <VBox.margin>
+            <Insets left="50.0" right="50.0" />
+        </VBox.margin>
+        <children>
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="As senhas não coincidem." wrappingWidth="264.37109375">
+                <font>
+                    <Font size="16.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="NONE" />
+                </cursor>
+            </Text>
+        </children>
+    </TextFlow>
+    <Button fx:id="btnCadastrar" cache="true" onAction="#aoConfirmarCadastro" prefHeight="44.0" prefWidth="349.0" styleClass="botao" text="Confirmar Cadastro" VBox.vgrow="ALWAYS">
+        <font>
+            <Font name="Gill Sans MT" size="21.0" />
+        </font>
+        <VBox.margin>
+            <Insets top="-40.0" />
+        </VBox.margin></Button>
+    <Label fx:id="acessaLogin" onMouseClicked="#aoAcessarLogin" text="Já possui uma conta? Acesse aqui!" textFill="#8451a6" underline="true">
+        <font>
+            <Font name="Gill Sans MT Italic" size="16.0" />
+        </font>
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+    </Label>
 </VBox>
