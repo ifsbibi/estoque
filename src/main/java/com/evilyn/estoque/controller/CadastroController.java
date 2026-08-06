@@ -64,7 +64,7 @@ public class CadastroController {
 
     @FXML
     protected void  aoAcessarLogin(MouseEvent event) throws IOException {
-        GerenciadorTela.getInstancia().trocarTela(event, "login.fxml", "Sistema de Estoque - Login");
+        GerenciadorTela.getInstancia().trocarTela(event,"login.fxml", "Sistema de Estoque - Login");
 
     }
 }
