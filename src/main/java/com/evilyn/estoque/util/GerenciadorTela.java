@@ -1,9 +1,9 @@
 package com.evilyn.estoque.util;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class GerenciadorTela {
 
 
 
-    public void trocarTela(@org.jetbrains.annotations.UnknownNullability MouseEvent evente, String telaFXML, String titulo) throws IOException {
+    public void trocarTela(@org.jetbrains.annotations.UnknownNullability ActionEvent evente, String telaFXML, String titulo) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/evilyn/estoque/"+telaFXML));
         Scene scene = new Scene(fxmlLoader.load());

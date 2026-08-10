@@ -14,13 +14,13 @@
          </font>
       </Label>
       <Label layoutX="21.0" layoutY="69.0" prefHeight="56.0" prefWidth="317.0" text="Informe seu email para receber o código de verificação:" textFill="#8451a6" />
-      <TextField layoutX="38.0" layoutY="115.0" prefHeight="25.0" prefWidth="256.0" promptText="Digite aqui..." />
-      <Label layoutX="67.0" layoutY="151.0" text="E-mail não cadastrado. Tente novamente!" textFill="#c61919" visible="false">
+      <TextField fx:id="emailRecuperacao" layoutX="38.0" layoutY="115.0" onAction="#aoValidarEmail" prefHeight="25.0" prefWidth="256.0" promptText="Digite aqui..." />
+      <Label fx:id="emailNaoCadastrado" layoutX="67.0" layoutY="151.0" text="E-mail não cadastrado. Tente novamente!" textFill="#c61919" visible="false">
          <font>
             <Font name="Arial" size="10.0" />
          </font>
       </Label>
-      <Button layoutX="97.0" layoutY="194.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #8451a6; -fx-background-radius: 30;" text="enviar" textFill="WHITE">
+      <Button fx:id="aoEnviar" layoutX="97.0" layoutY="194.0" mnemonicParsing="false" onAction="#aoEnviar" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #8451a6; -fx-background-radius: 30;" text="enviar" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>

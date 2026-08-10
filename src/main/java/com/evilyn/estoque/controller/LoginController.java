@@ -52,9 +52,14 @@ public class LoginController {
     }
 
     @FXML
-    protected void aoEsquecerSenha(){
-        System.out.println("Pqp, você esqueceu a senha!!!!!!");
+    protected void aoEsquecerSenha() throws IOException {
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("com.evilyn.estoque.enviarEmail.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Sistema de Estoque - Esqueceu a senha");
+        stage.show();
     }
 
 }
