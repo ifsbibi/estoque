@@ -8,51 +8,51 @@ import java.util.Random;
 
 public class RecuperacaoSenhaService {
 
-        private Usuario usuarioAlvo;
+    public static  RecuperacaoSenhaService instancia;
+    private Usuario usuarioAlvo;
 
-        private String codigoGerado;
+    private  String codigoGerado;
 
-        public String solicitarRecuperacao(String email, UsuarioDAO baseUsuario){
+    public  RecuperacaoSenhaService(){}
 
-            Optional<Usuario> usuarioEncontrado = baseUsuario.buscarPorEmail(email);
-            if (usuarioEncontrado.isEmpty()) {
-                return null;
-            }
+    public String solicitarRecuperacao(String email, UsuarioDAO baseUsuario){
 
-            this.codigoGerado = gerarCodigo();
-            this.usuarioAlvo = usuarioEncontrado.get();
-
-            return this.codigoGerado;
-
+        Optional<Usuario> usuarioEncontrado = baseUsuario.buscarPorEmail(email);
+        if( usuarioEncontrado.isEmpty()) {
+            return  null;
         }
 
-        private String gerarCodigo() {
-            int codigo = new Random().nextInt(900_000)+100_00;
-            return String.valueOf(codigo);
-        }
+        this.codigoGerado =  gerarCodigo();
+        this.usuarioAlvo = usuarioEncontrado.get();
 
-        public boolean validarCodigo(String codigoDigitado){
-            return codigoGerado != null && usuarioAlvo != null && codigoGerado.equals(codigoDigitado);
-        }
-
-        public boolean redefinirSenha(String novaSenha){
-            if(usuarioAlvo == null){
-                return false;
-            }
-            usuarioAlvo.setSenha(novaSenha);
-            encerrarFluxo();
-            return true;
-        }
-            public void encerrarFluxo(){
-            this.usuarioAlvo = null;
-            this.codigoGerado = null;
-            }
-
-            public Usuario getUsuarioAlvo(){
-                return usuarioAlvo;
-            }
-
-
+        return this.codigoGerado;
     }
 
+    private String gerarCodigo() {
+        int codigo = new Random().nextInt(900_000)+100_00;
+        return String.valueOf(codigo);
+    }
 
+    public boolean validarCodigo( String codigoDigitado){
+        return  codigoGerado != null &&  usuarioAlvo != null && codigoGerado.equals(codigoDigitado);
+    }
+
+    public boolean redefinirSenha( String novaSenha){
+        if( usuarioAlvo == null){
+            return false;
+        }
+        usuarioAlvo.setSenha(novaSenha);
+        encerrarFluxo();
+        return true;
+    }
+
+    public void encerrarFluxo(){
+        this.usuarioAlvo = null;
+        this.codigoGerado = null;
+    }
+
+    public  Usuario getUsuarioAlvo(){
+        return usuarioAlvo;
+    }
+
+}
