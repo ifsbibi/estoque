@@ -1,7 +1,6 @@
 package com.evilyn.estoque.controller;
 
 import com.evilyn.estoque.service.RecuperacaoSenhaService;
-import com.evilyn.estoque.util.GerenciadorTela;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,10 +26,9 @@ public class CodigoConfirmacaoController {
 
     private  RecuperacaoSenhaService service;
 
-    public void initData( RecuperacaoSenhaService service, String codigoGerado){
+    public void CodigoConfirmacao(RecuperacaoSenhaService service, String codigoGerado){
         this.service = service;
-        codigoRecuperacao.setText(codigoGerado
-        );
+        codigoRecuperacao.setText(codigoGerado);
 
     }
 
@@ -42,17 +40,20 @@ public class CodigoConfirmacaoController {
             return;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/jociel/estoque/codigoConfirmacao.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/evilyn/estoque/novaSenha.fxml"));
         Parent root = fxmlLoader.load();
 
         NovaSenhaController controller = fxmlLoader.getController();
-        controller.initData(service);
+        controller.NovaSenha(service);
 
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Código");
+        Stage stage = (Stage) codigoRecuperacao.getScene().getWindow();
+        stage.setTitle("Código Confirmação");
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public void codigoConfirmacao(RecuperacaoSenhaService service, String codigo) {
     }
 }
