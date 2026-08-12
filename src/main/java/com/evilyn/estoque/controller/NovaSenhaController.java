@@ -41,6 +41,7 @@ public class NovaSenhaController {
         }
 
         service.redefinirSenha(novaSenhaText);
+        mostrarAlerta("Senha alterada com sucesso!");
         ((Stage) novaSenha.getScene().getWindow()).close();
     }
 

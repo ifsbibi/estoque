@@ -2,6 +2,7 @@ package com.evilyn.estoque.controller;
 
 import com.evilyn.estoque.model.Usuario;
 import com.evilyn.estoque.model.UsuarioDAO;
+import com.evilyn.estoque.util.Constante;
 import com.evilyn.estoque.util.GerenciadorTela;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,14 +39,17 @@ public class CadastroController {
 
     @FXML
     protected  void aoConfirmarCadastro(ActionEvent event) throws IOException {
+
         String usuario =  usuarioCadastrar.getText();
-        if(usuario.isBlank()){
+
+        if( usuario.isBlank() || !usuario.matches(Constante.REGEX_EMAIL.getValor()) ){
             usuarioInvalido.setVisible(true);
             return;
         }
 
         String senha =  senhaCadastrar.getText();
-        if(senha.isBlank()){
+        if(senha.isBlank() || !senha.matches(Constante.REGEX_SENHA.getValor())){
+            senhaInvalida.setText("Utilize uma senha mais segura");
             senhaInvalida.setVisible(true);
             return;
         }
@@ -55,7 +59,6 @@ public class CadastroController {
             erroSenha.setVisible(true);
             return;
         }
-
         Usuario novoUsuario =  new Usuario(usuario, senha);
         dbUsuario.cadastrarUsuario(novoUsuario);
 
@@ -64,7 +67,7 @@ public class CadastroController {
 
     @FXML
     protected void  aoAcessarLogin(MouseEvent event) throws IOException {
-        GerenciadorTela.getInstancia().trocarTela(event,"login.fxml", "Sistema de Estoque - Login");
+        GerenciadorTela.getInstancia().trocarTela(event, "login.fxml", "Sistema de Estoque - Login");
 
     }
 }
