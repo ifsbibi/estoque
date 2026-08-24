@@ -29,7 +29,7 @@ public class ProdutoController {
     @FXML
     private Button botaoSalvar;
 
-    private final EstoqueDAO dadosEstoque = EstoqueDAO.getInstance();
+    private final EstoqueDAO dadosEstoque = new EstoqueDAO();
 
     private Produto produtoEmEdicao;
 
@@ -64,7 +64,7 @@ public class ProdutoController {
 
         if(produtoEmEdicao == null){
             Produto produto = new Produto(0, nome, categoria, quantidade, preco);
-            dadosEstoque.adiconar(produto);
+            dadosEstoque.adicionar(produto);
             mostrarSucesso(event, "Produto inserido com sucesso!");
         } else {
             produtoEmEdicao.setNome(nome);

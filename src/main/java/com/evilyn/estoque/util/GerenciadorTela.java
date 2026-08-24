@@ -30,7 +30,7 @@ public class GerenciadorTela {
 
     public void trocarTela(Event event, String telaFXML, String titulo) throws IOException {
 
-        FXMLLoader  fxmlLoader = new FXMLLoader(getClass().getResource("/com/jociel/estoque/"+telaFXML));
+        FXMLLoader  fxmlLoader = new FXMLLoader(getClass().getResource("/com/evilym/estoque/"+telaFXML));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(titulo);
@@ -39,7 +39,7 @@ public class GerenciadorTela {
     }
 
     public <T> T telaEdicao(ActionEvent event, String telaFXML, String titulo, Consumer<T> abrirEdicao) throws IOException {
-        FXMLLoader fxmlLoader =  new FXMLLoader(getClass().getResource("/com/jociel/estoque/"+telaFXML));
+        FXMLLoader fxmlLoader =  new FXMLLoader(getClass().getResource("/com/evilyn/estoque/"+telaFXML));
         Parent novoRoot = fxmlLoader.load();
         T controller = fxmlLoader.getController();
         if( abrirEdicao != null){

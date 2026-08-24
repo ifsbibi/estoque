@@ -2,6 +2,7 @@ package com.evilyn.estoque.model;
 
 public class Usuario {
 
+
     private String email;
     private String senha;
 
@@ -16,14 +17,17 @@ public class Usuario {
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
-    public String getSenha() {
+    public String getSenha()
+    {
         return senha;
     }
 

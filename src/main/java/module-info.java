@@ -4,6 +4,7 @@ module com.evilyn.estoque {
     requires java.desktop;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.materialdesign2;
+    requires java.sql;
 
 
     opens com.evilyn.estoque to javafx.fxml;

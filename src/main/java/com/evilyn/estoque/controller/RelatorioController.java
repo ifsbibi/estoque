@@ -21,7 +21,7 @@ public class RelatorioController {
     @FXML
     private Label lblEstoqueBaixo;
 
-    private final EstoqueDAO dadosEstoque = EstoqueDAO.getInstancia();
+    private final EstoqueDAO dadosEstoque = new EstoqueDAO();
 
     @FXML
     public  void initialize(){

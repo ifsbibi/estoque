@@ -59,7 +59,7 @@ public class CadastroController {
             erroSenha.setVisible(true);
             return;
         }
-        Usuario novoUsuario =  new Usuario(usuario, senha);
+        Usuario novoUsuario =  new Usuario(usuario,senha);
         dbUsuario.cadastrarUsuario(novoUsuario);
 
         GerenciadorTela.getInstancia().trocarTela(event, "login.fxml", "Sistema de Estoque - Login");

@@ -13,7 +13,6 @@ public class UsuarioDAO {
     public UsuarioDAO(){
         bdUsuarios = new HashSet<>();
         cadastrarUsuario(new Usuario("evilyn@gmail.com", "1234"));
-        cadastrarUsuario(new Usuario("admin@gmail.com", "1234"));
     }
 
     public static UsuarioDAO getInstancia(){
