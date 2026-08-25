@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class EstoqueController {
 
@@ -40,7 +41,7 @@ public class EstoqueController {
     private FilteredList<Produto> listaFiltrada;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
        colunaId.setCellValueFactory(new PropertyValueFactory<>("id"));
        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
        colunaCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));

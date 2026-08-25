@@ -8,7 +8,7 @@ public class Produto {
     private int quantidade;
     private double preco;
 
-    private Produto(){}
+    Produto(){}
 
     public Produto(int id, String nome, String categoria, int quantidade, double preco) {
         this.id = id;

@@ -4,9 +4,8 @@ import com.evilyn.estoque.util.ConexaoDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.List;
 
 public class EstoqueDAO {
 
@@ -34,12 +33,47 @@ public class EstoqueDAO {
 
     }
 
-    public ObservableList<Produto> listarProdutos(){
+    public ObservableList<Produto> listarProdutos() throws SQLException {
+
+        String sqlSelect = "SELECT * FROM produto";
+        try(
+                Connection con = ConexaoDB.abrirConexao();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(sqlSelect)
+                ){
+
+            while (rs.next()){
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setCategoria(rs.getString("categoria"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setPreco(rs.getDouble("preco"));
+                produtosList.add(produto);
+            }
+
+        }  catch (SQLException ex ){
+            System.err.println("BANCO DE DADOS - - - Erro ao executar select de prtodutos!" + ex.getMessage());
+            ex.printStackTrace();
+        }
+
+
         return produtosList;
     }
 
-    public void remover(Produto produto){
-        produtosList.remove(produto);
+    public void remover(List<Produto> listaProduto){
+        String sqlDelete = "DELETE FROM produto WHERE id = ?";
+        try (Connection con = ConexaoDB.abrirConexao(); PreparedStatement pstm = con.prepareStatement(sqlDelete)){
+            for (var produto : listaProduto){
+                pstm.setInt(1,produto.getId());
+                pstm.addBatch();
+            }
+            pstm.executeBatch();
+        } catch (SQLException ex){
+            System.err.println("BANCO DE DADOS - - - Erro ao deletar um produto" + ex.getMessage());
+            ex.printStackTrace();
+        }
+        produtosList.removeAll(listaProduto);
     }
 
 
