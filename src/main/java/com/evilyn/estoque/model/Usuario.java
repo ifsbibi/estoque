@@ -35,4 +35,6 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public void setId(int id) {
+    }
 }

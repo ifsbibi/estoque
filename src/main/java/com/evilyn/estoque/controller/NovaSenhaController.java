@@ -1,12 +1,13 @@
 package com.evilyn.estoque.controller;
 
 import com.evilyn.estoque.service.RecuperacaoSenhaService;
+import com.evilyn.estoque.util.Constante;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 
 public class NovaSenhaController {
 
@@ -19,7 +20,8 @@ public class NovaSenhaController {
     @FXML
     private Label senhasDiferentes;
 
-    private RecuperacaoSenhaService service ;
+    private RecuperacaoSenhaService service;
+
 
     public void NovaSenha( RecuperacaoSenhaService service){
         this.service = service;
@@ -30,11 +32,17 @@ public class NovaSenhaController {
         String novaSenhaText =  novaSenha.getText();
         String confirmaSenhaText = confirmaSenha.getText();
 
-        if( novaSenhaText.isBlank()){
+        if( novaSenhaText.isBlank() ) {
             senhasDiferentes.setText("A nova senha não pode ficar em branco");
             senhasDiferentes.setVisible(true);
             return;
         }
+        if (! novaSenhaText.matches(Constante.REGEX_SENHA.getValor())){
+            senhasDiferentes.setText("Sua nova senha precisa ser mais segura");
+            senhasDiferentes.setVisible(true);
+            return;
+        }
+
         if( !novaSenhaText.equals(confirmaSenhaText)){
             senhasDiferentes.setVisible(true);
             return;
@@ -45,7 +53,7 @@ public class NovaSenhaController {
         ((Stage) novaSenha.getScene().getWindow()).close();
     }
 
-    public void mostrarAlerta(String mensagem) {
+    public void mostrarAlerta( String mensagem){
         Alert alert = new Alert(Alert.AlertType.INFORMATION, mensagem);
         alert.setHeaderText(null);
         alert.showAndWait();

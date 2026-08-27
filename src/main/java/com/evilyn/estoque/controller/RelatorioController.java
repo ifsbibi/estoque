@@ -39,9 +39,15 @@ public class RelatorioController {
         lblEstoqueBaixo.setText(String.valueOf(estoqueBaixo));
 
 
+        // Conversao de tipos
+        // Inteiro ou Double  para String ->  String.valueOf( 1 ) saída -> "1"
+        // String ou Double ara inteiro -> Integer.parseInt( "1" ) saída -> 1
+        // Inteiro ou String para double ->  Double.parseDouble( "8.5" ) -> saída 8.5
+        // String para boolean ->  Boolean.parseBoolean( "true" ) -> saída true
 
 
     }
+
 
     @FXML
     protected void aoVoltarAoMenu(ActionEvent event) throws IOException {

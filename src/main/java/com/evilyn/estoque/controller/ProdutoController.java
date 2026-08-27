@@ -7,8 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,36 +30,43 @@ public class ProdutoController {
     @FXML
     private Button botaoSalvar;
 
+    @FXML
+    private Button botaoCancelar;
+
+    @FXML
+    private Label tituloProduto;
+
     private final EstoqueDAO dadosEstoque = new EstoqueDAO();
 
     private Produto produtoEmEdicao;
 
-    public void preencherParaEdicao(Produto produto){
+    public void preencherParaEdicao( Produto produto ){
         this.produtoEmEdicao = produto;
         campoNome.setText(produto.getNome());
         campoCategoria.setText(produto.getCategoria());
         campoQuantidade.setText(String.valueOf(produto.getQuantidade()));
         campoPreco.setText(String.valueOf(produto.getPreco()));
-        botaoSalvar.setText("Salvar alterações");
+        botaoSalvar.setText("Salvar Alterações");
+        botaoCancelar.setText("Cancelar Alterações");
+        tituloProduto.setText("Editar Produto Cadastrado");
+
     }
 
     @FXML
     protected void salvar(ActionEvent event) throws IOException, SQLException {
         String nome = campoNome.getText();
         String categoria = campoCategoria.getText();
-        if ( nome == null || nome.isBlank() || categoria == null || categoria.isBlank()){
+        if( nome == null || nome.isBlank() || categoria == null || categoria.isBlank()){
             mostrarErro("Informe um nome e uma categoria válida!");
             return;
         }
-
         int quantidade;
         double preco;
-
-        try{
+        try {
             quantidade = Integer.parseInt(campoQuantidade.getText().trim());
             preco = Double.parseDouble(campoPreco.getText().trim().replace(",", "."));
         } catch (NumberFormatException ex ){
-            mostrarErro("Quantidade e preço precisanm ser números válidos!");
+            mostrarErro("Quantidade e preço precisam ser números válidos.");
             return;
         }
 
@@ -72,27 +79,29 @@ public class ProdutoController {
             produtoEmEdicao.setCategoria(categoria);
             produtoEmEdicao.setQuantidade(quantidade);
             produtoEmEdicao.setPreco(preco);
+            dadosEstoque.atualizarProduto(produtoEmEdicao);
             mostrarSucesso(event, "Produto editado com sucesso!");
         }
-        System.out.println(dadosEstoque.listarProdutos());
+
     }
 
     private void mostrarErro(String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR,mensagem);
+        Alert alerta = new Alert( Alert.AlertType.WARNING, mensagem);
         alerta.setHeaderText(null);
         alerta.showAndWait();
     }
 
     private void mostrarSucesso(ActionEvent event, String mensagem) throws IOException {
-        Alert confirmacao = new Alert(Alert.AlertType.INFORMATION,mensagem);
+        Alert confirmacao = new Alert(Alert.AlertType.INFORMATION, mensagem );
         confirmacao.setHeaderText(null);
         confirmacao.showAndWait();
-        GerenciadorTela.getInstancia().trocarTela(event, "estoque.fxml", "Sistema de Estoque - Menu");
+        GerenciadorTela.getInstancia().trocarTela(event, "estoque.fxml", "Sistema de Estoque - Estoque");
     }
+
 
     @FXML
-    protected void cancelar(ActionEvent event) throws IOException {
-
-        GerenciadorTela.getInstancia().trocarTela(event, "menu.fxml", "Sistema Estoque - Menu");
+    protected  void cancelar(ActionEvent event) throws IOException {
+        GerenciadorTela.getInstancia().trocarTela(event, "menu.fxml", "Sistema de Estoque - Menu");
     }
+
 }

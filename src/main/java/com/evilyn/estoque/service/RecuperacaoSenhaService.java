@@ -2,7 +2,9 @@ package com.evilyn.estoque.service;
 
 import com.evilyn.estoque.model.Usuario;
 import com.evilyn.estoque.model.UsuarioDAO;
+import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
@@ -12,12 +14,13 @@ public class RecuperacaoSenhaService {
     private Usuario usuarioAlvo;
 
     private  String codigoGerado;
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public  RecuperacaoSenhaService(){}
 
-    public String solicitarRecuperacao(String email, UsuarioDAO baseUsuario){
+    public String solicitarRecuperacao(String email){
 
-        Optional<Usuario> usuarioEncontrado = baseUsuario.buscarPorEmail(email);
+        Optional<Usuario> usuarioEncontrado = usuarioDAO.buscarPorEmail(email);
         if( usuarioEncontrado.isEmpty()) {
             return  null;
         }
@@ -41,18 +44,14 @@ public class RecuperacaoSenhaService {
         if( usuarioAlvo == null){
             return false;
         }
-        usuarioAlvo.setSenha(novaSenha);
-        encerrarFluxo();
-        return true;
+       String senhaCriptografada = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
+
+        return BCrypt.checkpw(senhaCriptografada,usuarioAlvo.getSenha());
     }
 
     public void encerrarFluxo(){
         this.usuarioAlvo = null;
         this.codigoGerado = null;
-    }
-
-    public  Usuario getUsuarioAlvo(){
-        return usuarioAlvo;
     }
 
 }
