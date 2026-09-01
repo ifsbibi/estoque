@@ -8,7 +8,7 @@ public class Produto {
     private int quantidade;
     private double preco;
 
-    Produto(){}
+    public Produto(){}
 
     public Produto(int id, String nome, String categoria, int quantidade, double preco) {
         this.id = id;
@@ -59,8 +59,15 @@ public class Produto {
     }
 
     public double getValorTotal(){
-        return quantidade * preco;
-
+        return  quantidade * preco;
     }
 
+    @Override
+    public String toString() {
+        return "ID: "+ this.id +
+                " Nome: " + this.nome +
+                " Categoria: "  + this.categoria +
+                " Quantidade: " + this.quantidade +
+                " Preço: " + this.preco;
+    }
 }

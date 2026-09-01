@@ -9,8 +9,6 @@ import java.util.Optional;
 import java.util.Random;
 
 public class RecuperacaoSenhaService {
-
-    public static  RecuperacaoSenhaService instancia;
     private Usuario usuarioAlvo;
 
     private  String codigoGerado;
@@ -32,7 +30,7 @@ public class RecuperacaoSenhaService {
     }
 
     private String gerarCodigo() {
-        int codigo = new Random().nextInt(900_000)+100_00;
+        int codigo = new Random().nextInt(900_000)+100_000;
         return String.valueOf(codigo);
     }
 
@@ -44,14 +42,24 @@ public class RecuperacaoSenhaService {
         if( usuarioAlvo == null){
             return false;
         }
-       String senhaCriptografada = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
-
-        return BCrypt.checkpw(senhaCriptografada,usuarioAlvo.getSenha());
+        usuarioDAO.atualizarSenha(usuarioAlvo.getId(), novaSenha);
+        encerrarFluxo();
+        return true;
     }
+
+    public boolean verificarSenhaAntiga(String novaSenha){
+        if( usuarioAlvo == null){
+            return  false;
+        }
+
+        return  BCrypt.checkpw(novaSenha, usuarioAlvo.getSenha());
+    }
+
 
     public void encerrarFluxo(){
         this.usuarioAlvo = null;
         this.codigoGerado = null;
     }
+
 
 }

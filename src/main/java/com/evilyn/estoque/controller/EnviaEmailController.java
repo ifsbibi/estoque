@@ -2,11 +2,8 @@ package com.evilyn.estoque.controller;
 
 import com.evilyn.estoque.model.UsuarioDAO;
 import com.evilyn.estoque.service.RecuperacaoSenhaService;
-import com.evilyn.estoque.util.GerenciadorTela;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -25,8 +22,10 @@ public class EnviaEmailController {
 
 
     private final RecuperacaoSenhaService service = new RecuperacaoSenhaService();
+
     @FXML
-    protected void aoValidarEmail(ActionEvent event) throws IOException {
+    protected void aoValidarEmail() throws IOException {
+        emailNaoCadastrado.setVisible(false);
         String email = emailRecuperacao.getText().trim();
 
         String codigo = service.solicitarRecuperacao(email);
@@ -35,7 +34,6 @@ public class EnviaEmailController {
             emailNaoCadastrado.setVisible(true);
             return;
         }
-
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/evilyn/estoque/codigoConfirmacao.fxml"));
         Parent root = fxmlLoader.load();

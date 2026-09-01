@@ -29,6 +29,7 @@ public class NovaSenhaController {
 
     @FXML
     protected  void aoConfirmarSenha(){
+        senhasDiferentes.setVisible(false);
         String novaSenhaText =  novaSenha.getText();
         String confirmaSenhaText = confirmaSenha.getText();
 
@@ -37,13 +38,20 @@ public class NovaSenhaController {
             senhasDiferentes.setVisible(true);
             return;
         }
-        if (! novaSenhaText.matches(Constante.REGEX_SENHA.getValor())){
+        if (!novaSenhaText.matches(Constante.REGEX_SENHA.getValor())){
             senhasDiferentes.setText("Sua nova senha precisa ser mais segura");
             senhasDiferentes.setVisible(true);
             return;
         }
 
         if( !novaSenhaText.equals(confirmaSenhaText)){
+            senhasDiferentes.setVisible(true);
+            return;
+        }
+
+        var senhaIgualAntiga = service.verificarSenhaAntiga(novaSenhaText);
+        if( senhaIgualAntiga){
+            senhasDiferentes.setText("A nova senha não pode ser igual a anterior");
             senhasDiferentes.setVisible(true);
             return;
         }

@@ -36,7 +36,7 @@ public class LoginController {
 
     private boolean senhaVisivelAtiva = false;
 
-    private final UsuarioDAO bdUsuario = new UsuarioDAO();
+    private final UsuarioDAO bdUsuario =  new UsuarioDAO();
 
     @FXML
     public void initialize(){
@@ -44,17 +44,16 @@ public class LoginController {
     }
 
 
-
     @FXML
     protected void aoAcessarConta(ActionEvent event) throws IOException {
+        erroDados.setVisible(false);
 
         String usuarioDigitado = usuario.getText().toLowerCase();
         String senhaDigitada = senha.getText();
 
-        boolean loginValidado = bdUsuario.validarLogin(usuarioDigitado,senhaDigitada);
+        boolean loginValidado = bdUsuario.validarLogin(usuarioDigitado, senhaDigitada);
 
-
-        if ( loginValidado){
+        if (loginValidado){
             GerenciadorTela.getInstancia().trocarTela(event, "menu.fxml", "Sistema de Estoque - Menu");
 
         } else {

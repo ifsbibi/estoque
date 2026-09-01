@@ -9,11 +9,8 @@
 
 <VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #F4EDE7;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.evilyn.estoque.controller.NovaSenhaController">
    <children>
-      <Label styleClass="titulo-recuperacao" text="Recuperação de Senha" textFill="#8451a6">
-         <font>
-            <Font name="Arial Bold Italic" size="19.0" />
-         </font></Label>
-      <PasswordField fx:id="novaSenha" prefHeight="26.0" prefWidth="220.0" promptText="Nova Senha" style="-fx-background-radius: 0;">
+      <Label styleClass="titulo-recuperacao" text="Recuperação de Senha" textFill="#8451a6" />
+      <PasswordField fx:id="novaSenha" prefHeight="37.0" prefWidth="340.0" promptText="Nova Senha">
          <font>
             <Font size="16.0" />
          </font>
